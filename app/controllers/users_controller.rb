@@ -16,10 +16,6 @@ class UsersController < ApplicationController
     unless @user == current_user
       redirect_to user_path(current_user.id)
     end
-    # if @user.id != current_user.id
-    #   # @user = User.find(current_user.id)
-    #   redirect_to :back 
-    # end
   end
 
   def update

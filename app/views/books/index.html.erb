@@ -14,6 +14,20 @@
               <% end %>
               <p class="card-title"><%= link_to book.title, book_path(book.id)%></p>
               <p class="card-text"><%= book.body %></p>
+              <% if book.favorited_by?(current_user) %>
+                <%= link_to book_favorites_path(book), method: :delete do %>
+                  <span class= "text-danger">
+                    <i class="fas fa-heart"></i><%= book.favorites.count %> <!--いいね取り消しボタン(:delete)-->
+                  </span>
+                <% end %>
+              <% else %>
+                <%= link_to book_favorites_path(book), method: :post do %>
+                  <span class= "text-text-primary">
+                    <i class="fas fa-heart"></i><%= book.favorites.count %> <!--いいねボタン(:post)-->
+                  </span>
+                <% end %>
+              <% end %>
+              <p><%= "コメント数：#{book.book_comments.count} " %></p>
             </div>
           </div>
         <% end %>
