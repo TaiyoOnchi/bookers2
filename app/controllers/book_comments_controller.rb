@@ -1,6 +1,6 @@
 class BookCommentsController < ApplicationController
   def create #コメント作成
-    book = Book.find(params[:post_image_id]) #コメントする投稿データを取得
+    book = Book.find(params[:book_id]) #コメントする投稿データを取得
 
 		#comment = PostComment.new(post_comment_params)「:comment機能のみいじれる箱を作る」
     #comment.user_id = current_user.id 「現在ログインしているユーザーidで登録」
@@ -13,7 +13,7 @@ class BookCommentsController < ApplicationController
 
 
 	def destroy #コメント削除
-    PostComment.find(params[:id]).destroy
+    BookComment.find(params[:id]).destroy
     redirect_to book_path(params[:book_id])
   end
 
